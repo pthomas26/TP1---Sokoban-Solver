@@ -16,9 +16,7 @@ from heuristic    import heuristic_manhattan
 from search       import bfs, dfs, greedy, a_star
 from display      import render_state, print_result
 
-# =============================================================================
-# LOAD BOARD
-# =============================================================================
+# Loading of the Boards
 
 boards = load_boards(BOARD_FILE)
 
@@ -30,9 +28,8 @@ board_name, board_lines = boards[BOARD_INDEX]
 player_start, boxes, targets, walls, grid_size = parse_board(board_lines)
 initial_state = (player_start, boxes)
 
-# =============================================================================
-# DISPLAY INITIAL STATE
-# =============================================================================
+
+
 
 print("=" * 52)
 print(f"  SOKOBAN SOLVER")
@@ -46,9 +43,7 @@ print(f"\n  Initial state:")
 for line in render_state(initial_state, walls, targets, grid_size).splitlines():
     print(f"    {line}")
 
-# =============================================================================
-# RUN ALGORITHMS
-# =============================================================================
+
 
 algorithms = [
     ("BFS",
