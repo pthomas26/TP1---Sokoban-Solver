@@ -10,9 +10,7 @@ from config     import MAX_NODES
 from successors import get_successors, is_goal
 
 
-# =============================================================================
-# RESULT DICTIONARY
-# =============================================================================
+
 
 def _make_result(success, cost, expanded, frontier_size, path):
     """
@@ -34,9 +32,8 @@ def _make_result(success, cost, expanded, frontier_size, path):
     }
 
 
-# =============================================================================
-# BFS
-# =============================================================================
+
+
 
 def bfs(initial_state, targets, walls, grid_size, max_nodes=MAX_NODES):
     """
@@ -69,9 +66,9 @@ def bfs(initial_state, targets, walls, grid_size, max_nodes=MAX_NODES):
     return _make_result(False, None, expanded, 0, [])
 
 
-# =============================================================================
-# DFS
-# =============================================================================
+
+
+
 
 def dfs(initial_state, targets, walls, grid_size,
         max_depth=150, max_nodes=MAX_NODES):
@@ -111,9 +108,9 @@ def dfs(initial_state, targets, walls, grid_size,
     return _make_result(False, None, expanded, 0, [])
 
 
-# =============================================================================
-# GREEDY BEST-FIRST
-# =============================================================================
+
+
+
 
 def greedy(initial_state, targets, walls, grid_size,
            heuristic, max_nodes=MAX_NODES):
@@ -154,9 +151,9 @@ def greedy(initial_state, targets, walls, grid_size,
     return _make_result(False, None, expanded, 0, [])
 
 
-# =============================================================================
-# A*
-# =============================================================================
+
+
+
 
 def a_star(initial_state, targets, walls, grid_size,
            heuristic, max_nodes=MAX_NODES):
