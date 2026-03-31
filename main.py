@@ -8,13 +8,14 @@ To change the board, edit BOARD_INDEX in config.py.
 """
 
 import time
+import statistics
 
 from config       import BOARD_FILE, BOARD_INDEX, SHOW_PATH
 from board_loader import load_boards
 from board_parser import parse_board
-from heuristic    import heuristic_manhattan
 from search       import bfs, dfs, greedy, a_star
 from display      import render_state, print_result
+from heuristic import heuristic_manhattan, heuristic_misplaced_boxes
 
 # Loading of the Boards
 
@@ -45,7 +46,7 @@ for line in render_state(initial_state, walls, targets, grid_size).splitlines():
 
 
 
-algorithms = [
+algorithms =[
     ("BFS",
      lambda s: bfs(s, targets, walls, grid_size)),
     ("DFS (max_depth=150)",
@@ -54,12 +55,24 @@ algorithms = [
      lambda s: greedy(s, targets, walls, grid_size, heuristic_manhattan)),
     ("A* + Manhattan",
      lambda s: a_star(s, targets, walls, grid_size, heuristic_manhattan)),
+    # --- ADD THE NEW ONES HERE ---
+    ("Greedy + Misplaced",
+     lambda s: greedy(s, targets, walls, grid_size, heuristic_misplaced_boxes)),
+    ("A* + Misplaced",
+     lambda s: a_star(s, targets, walls, grid_size, heuristic_misplaced_boxes)),
 ]
 
 for name, algo in algorithms:
-    t0      = time.time()
-    result  = algo(initial_state)
-    elapsed = time.time() - t0
-    show    = SHOW_PATH and name == "A* + Manhattan"
-    print_result(name, result, walls, targets, grid_size, elapsed,
-                 show_path=show)
+    execution_times = []
+    for _ in range(5):
+        start_time = time.time()
+        result = algo(initial_state)
+        execution_times.append(time.time() - start_time)
+
+    mean_time = statistics.mean(execution_times)
+    std_dev = statistics.stdev(execution_times)
+
+    show = SHOW_PATH and name == "A* + Manhattan"
+    print_result(name, result, walls, targets, grid_size, mean_time,
+                show_path=show)
+    print(f"Standard Deviation: {std_dev} seconds")

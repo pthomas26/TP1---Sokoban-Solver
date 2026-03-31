@@ -21,3 +21,8 @@ def heuristic_manhattan(state, targets):
     """
     _, boxes = state
     return sum(min(_manhattan(box, t) for t in targets) for box in boxes)
+
+def heuristic_misplaced_boxes(state, targets):
+    # Explanation for TA: Every box not on a target needs at least 1 push.
+    _, boxes = state
+    return len(boxes - targets)
