@@ -1,0 +1,6 @@
+{
+    "board_file": "board.txt",
+    "board_index": 0,
+    "show_path": true,
+    "max_nodes": 500000
+  }

@@ -9,13 +9,27 @@ To change the board, edit BOARD_INDEX in config.py.
 
 import time
 import statistics
+import os
+import json
 
-from config       import BOARD_FILE, BOARD_INDEX, SHOW_PATH
 from board_loader import load_boards
 from board_parser import parse_board
-from search       import bfs, dfs, greedy, a_star
-from display      import render_state, print_result
+from search import bfs, dfs, greedy, a_star
+from display import render_state, print_result
 from heuristic import heuristic_manhattan, heuristic_misplaced_boxes
+from config_loader import BOARD_FILE, BOARD_INDEX, SHOW_PATH
+
+# --- CONFIG LOADING ---
+BASE_DIR = os.path.dirname(__file__)
+CONFIG_PATH = os.path.join(BASE_DIR, "config.json")
+
+with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+    config = json.load(f)
+
+BOARD_FILE = os.path.join(BASE_DIR, config["board_file"])
+BOARD_INDEX = config["board_index"]
+SHOW_PATH = config["show_path"]
+
 
 # Loading of the Boards
 
@@ -28,8 +42,6 @@ if BOARD_INDEX >= len(boards):
 board_name, board_lines = boards[BOARD_INDEX]
 player_start, boxes, targets, walls, grid_size = parse_board(board_lines)
 initial_state = (player_start, boxes)
-
-
 
 
 print("=" * 52)

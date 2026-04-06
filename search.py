@@ -6,7 +6,7 @@ Member 4
 import heapq
 from collections import deque
 
-from config     import MAX_NODES
+from config_loader     import MAX_NODES
 from successors import get_successors, is_goal
 
 
