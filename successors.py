@@ -1,6 +1,6 @@
 """
 successors.py — Successor generation and goal test.
-Member 3
+
 """
 
 from grid_utils import DIRECTIONS, is_valid_cell

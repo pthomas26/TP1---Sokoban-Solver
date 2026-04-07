@@ -1,8 +1,7 @@
 """
 board_loader.py — Read board.txt and split it into named board groups.
-Member 1
-"""
 
+"""
 
 def _is_grid_line(line):
     """Return True if the line contains at least one Sokoban character."""

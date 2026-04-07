@@ -1,6 +1,6 @@
 """
 deadlock.py — Corner-deadlock detection to prune unsolvable states early.
-Member 3
+
 """
 
 from grid_utils import is_valid_cell

@@ -1,6 +1,6 @@
 """
 display.py — ASCII renderer and formatted result printer.
-Member 4
+
 """
 
 

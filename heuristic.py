@@ -1,6 +1,6 @@
 """
 heuristic.py — Admissible heuristic for informed search (Greedy, A*).
-Member 4
+
 """
 
 
@@ -17,12 +17,12 @@ def heuristic_manhattan(state, targets):
       Each push moves a box exactly one cell, so the Manhattan distance from
       a box to its nearest target is a lower bound on the pushes required for
       that box alone.  Summing over all boxes is optimistic (assumes boxes do
-      not interfere), so the heuristic never overestimates — A* remains optimal.
+      not interfere), so the heuristic never overestimates and A* remains optimal.
     """
     _, boxes = state
     return sum(min(_manhattan(box, t) for t in targets) for box in boxes)
 
 def heuristic_misplaced_boxes(state, targets):
-    # Explanation for TA: Every box not on a target needs at least 1 push.
+    """ Every box not on a target needs at least 1 push."""
     _, boxes = state
     return len(boxes - targets)
