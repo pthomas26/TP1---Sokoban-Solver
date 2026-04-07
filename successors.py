@@ -27,7 +27,7 @@ def get_successors(state, walls, targets, grid_size):
 
     State representation: (player_pos, boxes)
       player_pos  (row, col)
-      boxes       frozenset of (row, col)  — immutable & hashable
+      boxes       frozenset of (row, col)  
     """
     player, boxes = state
     pr, pc = player

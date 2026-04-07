@@ -1,6 +1,6 @@
 """
 search.py — BFS, DFS, Greedy Best-First and A* search algorithms.
-Member 4
+
 """
 
 import heapq
